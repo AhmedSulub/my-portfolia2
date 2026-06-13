@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>ENG SULUB | Creative Engineer - Code & Motion Portfolio</title>
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Professional portfolio of ENG SULUB, a Creative Engineer specializing in Full Stack Development, video editing, and motion graphics. Explore modern web apps, cinematic reels, and interactive animations." />
+    
+    <!-- Tailwind CSS v3 via Play CDN with configuration -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries,typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#0F172A',
+                        textHeading: '#F8FAFC',
+                        textMuted: '#94A3B8',
+                        primary: {
+                            DEFAULT: '#3B82F6', // Electric Blue
+                            light: '#60A5FA',
+                            dark: '#1D4ED8',
+                        },
+                        accent: {
+                            DEFAULT: '#8B5CF6', // Vivid Purple
+                            light: '#A78BFA',
+                            dark: '#6D28D9',
+                        },
+                        slate: {
+                            950: '#0B0F19',
+                            900: '#0F172A',
+                            800: '#1E293B',
+                            700: '#334155',
+                            600: '#475569',
+                            400: '#94A3B8',
+                            300: '#CBD5E1',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Sora', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    spacing: {
+                        'container-max': '1280px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0F172A;
+            color: #94A3B8;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0F172A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3B82F6;
+        }
+
+        /* Glassmorphism Panel styles */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-panel-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-panel-hover:hover {
+            background: rgba(15, 23, 42, 0.65);
+            border-color: rgba(59, 130, 246, 0.35);
+            box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.15),
+                        0 0 30px rgba(139, 92, 246, 0.08);
+            transform: translateY(-6px);
+        }
+
+        /* Neon Text and Border Shadows */
+        .glow-primary {
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.35);
+        }
+
+        .glow-accent {
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.35);
+        }
+
+        .text-glow-primary {
+            text-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+        }
+
+        .text-glow-accent {
+            text-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
+        }
+
+        /* Typing cursor effect */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 0.75s step-end infinite;
+            color: #3B82F6;
+            margin-left: 4px;
+        }
+
+        @keyframes blink {
+            from, to { color: transparent }
+            50% { color: #3B82F6; }
+        }
+
+        /* Fade-in animation with delay */
+        .animate-fade-in-delayed {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 1.2s forwards;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Dynamic Pointer Glow Background */
+        #pointer-glow {
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(139, 92, 246, 0.06) 40%, transparent 70%);
+            transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: transform;
+        }
+
+        /* Navigation Underline Slide */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(90deg, #3B82F6, #8B5CF6);
+            transform-origin: bottom right;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Projects Category transitions */
+        .project-card {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+        }
+    </style>
+</head>
+<body class="selection:bg-primary/30 selection:text-white font-sans antialiased text-slate-400">
+
+    <!-- Atmospheric Pointer Glow -->
+    <div id="pointer-glow" class="fixed w-[500px] h-[500px] pointer-events-none rounded-full blur-[80px] z-[99] hidden lg:block left-0 top-0"></div>
+
+    <!-- Background Grid overlay -->
+    <div class="fixed inset-0 bg-[linear-gradient(to_right,#1e293b12_1px,transparent_1px),linear-gradient(to_bottom,#1e293b12_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0"></div>
+
+    <!-- Header & Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-[#0F172A]/80 backdrop-blur-md border-b border-slate-800/80 transition-all duration-300">
+        <nav class="flex justify-between items-center max-w-container-max mx-auto px-6 lg:px-12 h-20">
+            <!-- Logo -->
+            <a href="#" class="font-display text-xl lg:text-2xl font-bold tracking-tight text-white flex items-center gap-2 group">
+                <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+                ENG <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent group-hover:text-glow-primary transition-all duration-300">SULUB</span>
+            </a>
+
+            <!-- Navigation Links (Desktop) -->
+            <div class="hidden md:flex items-center gap-8 lg:gap-10">
+                <a href="#home" class="nav-link font-display text-sm font-semibold text-white tracking-wide transition-colors hover:text-[#3B82F6]">Home</a>
+                <a href="#about" class="nav-link font-display text-sm font-semibold text-slate-300 tracking-wide transition-colors hover:text-[#3B82F6]">About</a>
+                <a href="#projects" class="nav-link font-display text-sm font-semibold text-slate-300 tracking-wide transition-colors hover:text-[#3B82F6]">Projects</a>
+                <a href="#services" class="nav-link font-display text-sm font-semibold text-slate-300 tracking-wide transition-colors hover:text-[#3B82F6]">Services</a>
+                <a href="#contact" class="nav-link font-display text-sm font-semibold text-slate-300 tracking-wide transition-colors hover:text-[#3B82F6]">Contact</a>
+            </div>
+
+            <!-- Action Button (Desktop) -->
+            <div class="hidden md:block">
+                <a href="#contact" class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-semibold font-display text-white rounded-full group bg-gradient-to-br from-primary to-accent group-hover:from-primary group-hover:to-accent hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-800 transition-all duration-300">
+                    <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-950 rounded-full group-hover:bg-opacity-0">
+                        Get in Touch
+                    </span>
+                </a>
+            </div>
+
+            <!-- Hamburger Button (Mobile) -->
+            <button id="mobile-menu-btn" class="md:hidden text-white hover:text-primary focus:outline-none z-50" aria-label="Toggle menu">
+                <span class="material-symbols-outlined text-3xl">menu</span>
+            </button>
+        </nav>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-menu" class="fixed inset-0 z-40 bg-slate-950/90 backdrop-blur-md translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+            <div class="flex flex-col items-center justify-center h-full gap-8">
+                <a href="#home" class="mobile-nav-link font-display text-2xl font-bold text-white hover:text-primary transition-colors">Home</a>
+                <a href="#about" class="mobile-nav-link font-display text-2xl font-bold text-white hover:text-primary transition-colors">About</a>
+                <a href="#projects" class="mobile-nav-link font-display text-2xl font-bold text-white hover:text-primary transition-colors">Projects</a>
+                <a href="#services" class="mobile-nav-link font-display text-2xl font-bold text-white hover:text-primary transition-colors">Services</a>
+                <a href="#contact" class="mobile-nav-link font-display text-2xl font-bold text-white hover:text-primary transition-colors">Contact</a>
+                <a href="#contact" class="mt-4 px-8 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-full font-bold font-display shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] transition-all">Get in Touch</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center pt-24 pb-16 px-6 lg:px-12 max-w-container-max mx-auto relative overflow-hidden">
+            <!-- Background glow grids for hero aesthetics -->
+            <div class="absolute -top-32 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute top-1/2 right-0 w-[450px] h-[450px] bg-accent/80 opacity-5 rounded-full blur-[140px] pointer-events-none"></div>
+            
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full">
+                <!-- Left Column (Copy) -->
+                <div class="lg:col-span-7 flex flex-col items-start text-left order-2 lg:order-1">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 border border-slate-800 mb-6 text-sm font-semibold tracking-wide">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-ping"></span>
+                        <span class="font-mono text-xs text-primary-light">AVAILABLE FOR WORLDWIDE FREELANCE</span>
+                    </div>
+
+                    <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight min-h-[160px] sm:min-h-[200px] lg:min-h-[240px]">
+                        Creative Engineer: <br>
+                        <span id="typed-text" class="bg-gradient-to-r from-primary-light via-indigo-400 to-accent-light bg-clip-text text-transparent typing-cursor"></span>
+                    </h1>
+
+                    <div class="animate-fade-in-delayed mb-10 max-w-xl leading-relaxed space-y-4">
+                        <span class="block text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight text-glow-accent">Hi, I'm ENG SULUB!</span>
+                        <span class="block text-xl sm:text-2xl font-bold text-[#F8FAFC]">I'm a Fullstack Developer and Video Editor.</span>
+                        <span class="block text-base sm:text-lg text-slate-300">Mastering Adobe <span class="text-[#3B82F6] font-semibold">Premiere Pro</span> & After Effects to create <span class="text-[#8B5CF6] font-extrabold text-glow-accent">Motion</span> that moves.</span>
+                    </div>
+
+                    <div class="flex flex-wrap gap-4 w-full sm:w-auto">
+                        <a href="#contact" class="flex-1 sm:flex-initial text-center bg-gradient-to-r from-primary to-accent text-white px-8 py-4 rounded-xl font-bold font-display shadow-lg hover:shadow-[0_0_25px_rgba(139,92,246,0.4)] transition-all duration-300 transform hover:-translate-y-0.5">
+                            Get in Touch
+                        </a>
+                        <a href="#projects" class="flex-1 sm:flex-initial text-center border border-slate-700 bg-slate-900/30 text-white hover:bg-slate-800/50 hover:border-slate-500 px-8 py-4 rounded-xl font-bold font-display transition-all duration-300 transform hover:-translate-y-0.5">
+                            View Work
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column (Glowing Avatar) -->
+                <div class="lg:col-span-5 flex justify-center items-center order-1 lg:order-2">
+                    <div class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full flex items-center justify-center p-4">
+                        <!-- Neon Outer Gradient Glow (Rotating) -->
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-primary via-transparent to-accent opacity-30 animate-spin" style="animation-duration: 15s;"></div>
+                        <!-- Neon Inner Gradient Glow (Rotating Reverse) -->
+                        <div class="absolute inset-3 rounded-full bg-gradient-to-bl from-accent via-transparent to-primary opacity-40 animate-spin" style="animation-duration: 10s; animation-direction: reverse;"></div>
+                        <!-- Luminous Backdrop Blur Glow -->
+                        <div class="absolute inset-6 rounded-full bg-gradient-to-r from-primary to-accent blur-3xl opacity-20 animate-pulse-slow"></div>
+
+                        <!-- Portrait Container -->
+                        <div class="relative w-full h-full rounded-full overflow-hidden border border-slate-800 bg-[#0F172A] p-2">
+                            <img src="./image_07dedf.jpg" 
+                                 alt="ENG SULUB Professional Portrait" 
+                                 class="w-full h-full object-cover rounded-full object-center select-none" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About & Tech Stack Section -->
+        <section id="about" class="py-24 px-6 lg:px-12 max-w-container-max mx-auto relative">
+            <div class="absolute top-1/2 left-0 w-80 h-80 bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+            
+            <!-- Section Header -->
+            <div class="flex flex-col items-center mb-16 text-center">
+                <span class="font-mono text-xs font-bold text-accent tracking-widest uppercase mb-3">ABOUT & EXPERTISE</span>
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white">Engineering Digital Precision</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-primary to-accent mt-4 rounded-full"></div>
+            </div>
+
+            <!-- About Intro Paragraph -->
+            <div class="max-w-3xl mx-auto text-center mb-20">
+                <p class="font-sans text-lg text-slate-300 leading-relaxed">
+                    I believe that visual aesthetics and deep system engineering are not mutually exclusive—they are complementary. My work merges clean, robust full stack architectures with cinematic visual storytelling and motion graphics. By using modern web ecosystems and high-fidelity content tools, I build immersive platforms that perform and captivate.
+                </p>
+            </div>
+
+            <!-- Stack Cards Grid -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1: Full Stack -->
+                <div class="glass-panel glass-panel-hover p-8 rounded-2xl flex flex-col items-start group">
+                    <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <span class="material-symbols-outlined text-2xl">code</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-4">Full Stack Development</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                        Architecting lightning-fast user interfaces, custom responsive layout paradigms, and robust APIs. Focused on scalable, semantic codebases.
+                    </p>
+                    <div class="mt-auto flex flex-wrap gap-2 pt-4 border-t border-slate-800/60 w-full">
+                        <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-slate-900 text-primary-light">React</span>
+                        <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-slate-900 text-primary-light">TypeScript</span>
+                        <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-slate-900 text-primary-light">Next.js</span>
+                        <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-slate-900 text-primary-light">Node.js</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Premiere Pro -->
+                <div class="glass-panel glass-panel-hover p-8 rounded-2xl flex flex-col items-start group">
+                    <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                        <span class="material-symbols-outlined text-2xl">movie</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-4">Premiere Pro Workflow</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                        Editing premium cinematic sequences, commercial ads, and short film features. Expert at color grading, narrative speed-ramping, and audio design.
+                    </p>
+                    <div class="mt-auto flex flex-wrap gap-2 pt-4 border-t border-slate-800/60 w-full">
+                        <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-slate-900 text-accent-light">4K Workflow</span>
+                        <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-slate-900 text-accent-light">Color Grading</span>
+                        <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-slate-900 text-accent-light">Sound Design</span>
+                        <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-slate-900 text-accent-light">Lumetri Color</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Motion Graphics -->
+                <div class="glass-panel glass-panel-hover p-8 rounded-2xl flex flex-col items-start group">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-6 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-all duration-300">
+                        <span class="material-symbols-outlined text-2xl">animation</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-4">Motion Graphics Design</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                        Creating procedural visual assets, dynamic logo reveals, custom UI transitions, and micro-interactions that elevate brand storytelling.
+                    </p>
+                    <div class="mt-auto flex flex-wrap gap-2 pt-4 border-t border-slate-800/60 w-full">
+                        <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-slate-900 text-cyan-400">After Effects</span>
+                        <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-slate-900 text-cyan-400">Lottie/JSON</span>
+                        <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-slate-900 text-cyan-400">Vector Motion</span>
+                        <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-slate-900 text-cyan-400">Cinema 4D</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Grid Section -->
+        <section id="projects" class="py-24 px-6 lg:px-12 bg-slate-950/40 relative">
+            <div class="max-w-container-max mx-auto">
+                <!-- Section Header with Filter Tabs -->
+                <div class="flex flex-col lg:flex-row lg:justify-between lg:items-end mb-16 gap-6">
+                    <div>
+                        <span class="font-mono text-xs font-bold text-primary tracking-widest uppercase mb-3">PORTFOLIO</span>
+                        <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white">Selected Works</h2>
+                    </div>
+
+                    <!-- Category Filters -->
+                    <div class="flex flex-wrap gap-2 bg-slate-900/60 p-1.5 border border-slate-800 rounded-xl max-w-max">
+                        <button class="filter-btn px-4 py-2 text-xs font-bold font-display rounded-lg tracking-wide transition-all bg-primary/10 text-primary border border-primary/20" data-filter="all">
+                            ALL WORK
+                        </button>
+                        <button class="filter-btn px-4 py-2 text-xs font-bold font-display rounded-lg tracking-wide transition-all text-slate-400 border border-transparent hover:text-white" data-filter="web-app">
+                            WEB APPS
+                        </button>
+                        <button class="filter-btn px-4 py-2 text-xs font-bold font-display rounded-lg tracking-wide transition-all text-slate-400 border border-transparent hover:text-white" data-filter="video-editing">
+                            VIDEO EDITING
+                        </button>
+                        <button class="filter-btn px-4 py-2 text-xs font-bold font-display rounded-lg tracking-wide transition-all text-slate-400 border border-transparent hover:text-white" data-filter="motion-graphics">
+                            MOTION DESIGN
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3-Column Projects Grid -->
+                <div id="projects-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Card 1: Web App -->
+                    <div class="project-card glass-panel rounded-2xl overflow-hidden group" data-category="web-app">
+                        <div class="aspect-[16/10] overflow-hidden relative border-b border-slate-800/80">
+                            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none" 
+                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuANk89rlqLCoevZ0KewZmRuHl8Kpx_QosyhkPAI-DJcH8faILDjnKDYLFIE-FL6xRHsXuz2HAVhz7ChZCpX-_rO498dHX_SaC2bomfC6ZG2snW_2Zn5r2o-_XMmsMSz-lQsy87alY9-U8ZSJ84njV6E-KcUd7Zvu-cO5pjHuyYgYzD7fACSUISmIoCqwZQtgmMbeAXreyMzpcvx50PHt2tCi2uhxV9HXSR60W_aoNTJxi-EK3CtZHYH" 
+                                 alt="AI Dashboard Interface Screenshot" />
+                            <div class="absolute top-4 right-4 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold font-mono tracking-wider text-primary border border-primary/20">
+                                WEB APP
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-display text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors">AI Predictive Dashboard</h3>
+                            <p class="text-xs text-slate-400 mb-6 leading-relaxed">
+                                Real-time analytical dashboard displaying interactive forecasting, vector networking maps, and dark-theme data trails.
+                            </p>
+                            <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold text-primary hover:text-primary-light transition-colors group/link">
+                                Case Study Details 
+                                <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover/link:translate-x-1">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Video Editing -->
+                    <div class="project-card glass-panel rounded-2xl overflow-hidden group" data-category="video-editing">
+                        <div class="aspect-[16/10] overflow-hidden relative border-b border-slate-800/80">
+                            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none" 
+                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4fUhRBEY85gVpc1emt_NjyiBsBOy-OgphxEys4A9CuU77jmVzNpTuFj6e9Ti0seqK112OOU_ivhXQe4CpkizxaImMbYz-WoSfBLkd6LMdci9ufdsz76FsFV9OrmGBUNcJs13HEJ9Pnh9_-bPmHSCYG0ESYlekxPMRcmLLDDhKbQakglGlarIEz1BXIbvocUJAPxreruNfYIJbjL37WbMOKdGml4Biy0QAaQZSuRzdYv5NVZMpgudj" 
+                                 alt="Cinematic video screen frame" />
+                            <div class="absolute top-4 right-4 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold font-mono tracking-wider text-accent border border-accent/20">
+                                VIDEO EDITING
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-display text-lg font-bold text-white mb-2 group-hover:text-accent transition-colors">Atmospheric Cityscape Reel</h3>
+                            <p class="text-xs text-slate-400 mb-6 leading-relaxed">
+                                A high-end promotional sequence featuring moody nighttime color grading, rapid narrative editing cuts, and custom sound designs.
+                            </p>
+                            <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold text-accent hover:text-accent-light transition-colors group/link">
+                                Play Showcase Reel 
+                                <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover/link:scale-110">play_circle</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Motion Graphics -->
+                    <div class="project-card glass-panel rounded-2xl overflow-hidden group" data-category="motion-graphics">
+                        <div class="aspect-[16/10] overflow-hidden relative border-b border-slate-800/80">
+                            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none" 
+                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvB2ZSOj7n__yms9pOL0O8v51271Q_wdzWXWRdMBn6JUyXeGb_J8X-T2qa5aTDv0eBSfdPfONaoPa6AVpgPgYZf5e3IjDypSvpUr9g2mjoh_6s-NLfTlGGqTqc4AM53Vp73W5Z6R80xE72X8UtHeDagnd9C2QuOP2AHnXsMJ_sCEN6CFEvedOkluSeNyj8NkL4VKIO_Vm3HolgqKApWtELoPNQY-I4MQ1EVBv8UKCcZK83BWBPt7GW" 
+                                 alt="Procedural UI particle graphics screen" />
+                            <div class="absolute top-4 right-4 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold font-mono tracking-wider text-cyan-400 border border-cyan-400/20">
+                                MOTION DESIGN
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-display text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">Generative Vector Engine</h3>
+                            <p class="text-xs text-slate-400 mb-6 leading-relaxed">
+                                Vector-based procedural animation system mimicking organic cyber meshes, designed for futuristic user-interface templates.
+                            </p>
+                            <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors group/link">
+                                View Motion Details 
+                                <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover/link:rotate-45">auto_awesome</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Web App -->
+                    <div class="project-card glass-panel rounded-2xl overflow-hidden group" data-category="web-app">
+                        <div class="aspect-[16/10] overflow-hidden relative border-b border-slate-800/80">
+                            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none" 
+                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuANk89rlqLCoevZ0KewZmRuHl8Kpx_QosyhkPAI-DJcH8faILDjnKDYLFIE-FL6xRHsXuz2HAVhz7ChZCpX-_rO498dHX_SaC2bomfC6ZG2snW_2Zn5r2o-_XMmsMSz-lQsy87alY9-U8ZSJ84njV6E-KcUd7Zvu-cO5pjHuyYgYzD7fACSUISmIoCqwZQtgmMbeAXreyMzpcvx50PHt2tCi2uhxV9HXSR60W_aoNTJxi-EK3CtZHYH" 
+                                 alt="Code repository workflow dashboard" />
+                            <div class="absolute top-4 right-4 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold font-mono tracking-wider text-primary border border-primary/20">
+                                WEB APP
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-display text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors">Collaborative Code Workspace</h3>
+                            <p class="text-xs text-slate-400 mb-6 leading-relaxed">
+                                Real-time multiplayer editor workspace with integrated compiler, chat panels, and customizable workspace dimensions.
+                            </p>
+                            <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold text-primary hover:text-primary-light transition-colors group/link">
+                                Case Study Details 
+                                <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover/link:translate-x-1">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Video Editing -->
+                    <div class="project-card glass-panel rounded-2xl overflow-hidden group" data-category="video-editing">
+                        <div class="aspect-[16/10] overflow-hidden relative border-b border-slate-800/80">
+                            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none" 
+                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4fUhRBEY85gVpc1emt_NjyiBsBOy-OgphxEys4A9CuU77jmVzNpTuFj6e9Ti0seqK112OOU_ivhXQe4CpkizxaImMbYz-WoSfBLkd6LMdci9ufdsz76FsFV9OrmGBUNcJs13HEJ9Pnh9_-bPmHSCYG0ESYlekxPMRcmLLDDhKbQakglGlarIEz1BXIbvocUJAPxreruNfYIJbjL37WbMOKdGml4Biy0QAaQZSuRzdYv5NVZMpgudj" 
+                                 alt="Urban neon editing frame" />
+                            <div class="absolute top-4 right-4 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold font-mono tracking-wider text-accent border border-accent/20">
+                                VIDEO EDITING
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-display text-lg font-bold text-white mb-2 group-hover:text-accent transition-colors">Commercial Brand Promo</h3>
+                            <p class="text-xs text-slate-400 mb-6 leading-relaxed">
+                                Fast-paced commercial video sequence blending physical captures with kinetic motion overlay frames.
+                            </p>
+                            <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold text-accent hover:text-accent-light transition-colors group/link">
+                                Play Showcase Reel 
+                                <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover/link:scale-110">play_circle</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Motion Graphics -->
+                    <div class="project-card glass-panel rounded-2xl overflow-hidden group" data-category="motion-graphics">
+                        <div class="aspect-[16/10] overflow-hidden relative border-b border-slate-800/80">
+                            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none" 
+                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvB2ZSOj7n__yms9pOL0O8v51271Q_wdzWXWRdMBn6JUyXeGb_J8X-T2qa5aTDv0eBSfdPfONaoPa6AVpgPgYZf5e3IjDypSvpUr9g2mjoh_6s-NLfTlGGqTqc4AM53Vp73W5Z6R80xE72X8UtHeDagnd9C2QuOP2AHnXsMJ_sCEN6CFEvedOkluSeNyj8NkL4VKIO_Vm3HolgqKApWtELoPNQY-I4MQ1EVBv8UKCcZK83BWBPt7GW" 
+                                 alt="Futuristic branding motion reveal" />
+                            <div class="absolute top-4 right-4 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold font-mono tracking-wider text-cyan-400 border border-cyan-400/20">
+                                MOTION DESIGN
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-display text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">Quantum Logo Reveal</h3>
+                            <p class="text-xs text-slate-400 mb-6 leading-relaxed">
+                                Particle-based visual logo dispersion animation. Combines physical friction variables with cinematic flares.
+                            </p>
+                            <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors group/link">
+                                View Motion Details 
+                                <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover/link:rotate-45">auto_awesome</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-24 px-6 lg:px-12 max-w-container-max mx-auto relative">
+            <div class="absolute top-1/3 right-0 w-96 h-96 bg-accent/5 rounded-full blur-[110px] pointer-events-none"></div>
+
+            <!-- Section Header -->
+            <div class="flex flex-col items-center mb-20 text-center">
+                <span class="font-mono text-xs font-bold text-accent tracking-widest uppercase mb-3">WHAT I DO</span>
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white">Services Tailored for Excellence</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-primary to-accent mt-4 rounded-full"></div>
+            </div>
+
+            <!-- 3-Card Grid -->
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="border border-slate-800/80 bg-slate-950/40 p-8 rounded-2xl flex flex-col items-start transition-colors duration-300 hover:border-primary/50 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-xl pointer-events-none group-hover:bg-primary/10 transition-colors"></div>
+                    <span class="font-mono text-xs font-bold text-primary mb-2">01. WEB PARADIGMS</span>
+                    <h3 class="font-display text-xl font-bold text-white mb-6">Website Development</h3>
+                    
+                    <ul class="space-y-4 text-sm text-slate-400 mb-10">
+                        <li class="flex items-start gap-2.5">
+                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                            <span>Single Page Applications & complex dashboards</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                            <span>Frictionless React, Next.js & Tailwind CSS builds</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                            <span>Fully responsive, modular, SEO-compliant architectures</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="mt-auto px-6 py-2.5 border border-slate-700 text-white rounded-lg text-xs font-semibold tracking-wide hover:bg-primary hover:border-primary transition-colors">GET DETAILS</a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="border border-slate-800/80 bg-slate-950/40 p-8 rounded-2xl flex flex-col items-start transition-colors duration-300 hover:border-accent/50 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-accent/5 rounded-full blur-xl pointer-events-none group-hover:bg-accent/10 transition-colors"></div>
+                    <span class="font-mono text-xs font-bold text-accent mb-2">02. KINETIC RYTHMS</span>
+                    <h3 class="font-display text-xl font-bold text-white mb-6">Video Editing</h3>
+                    
+                    <ul class="space-y-4 text-sm text-slate-400 mb-10">
+                        <li class="flex items-start gap-2.5">
+                            <span class="material-symbols-outlined text-accent text-base mt-0.5">check_circle</span>
+                            <span>Cinematic editing for promo reels & narrative features</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="material-symbols-outlined text-accent text-base mt-0.5">check_circle</span>
+                            <span>Color correction & grading (custom atmospheric LUTS)</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="material-symbols-outlined text-accent text-base mt-0.5">check_circle</span>
+                            <span>High-fidelity audio design, syncing, & SFX mix</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="mt-auto px-6 py-2.5 border border-slate-700 text-white rounded-lg text-xs font-semibold tracking-wide hover:bg-accent hover:border-accent transition-colors">GET DETAILS</a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="border border-slate-800/80 bg-slate-950/40 p-8 rounded-2xl flex flex-col items-start transition-colors duration-300 hover:border-cyan-400/50 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-cyan-500/5 rounded-full blur-xl pointer-events-none group-hover:bg-cyan-500/10 transition-colors"></div>
+                    <span class="font-mono text-xs font-bold text-cyan-400 mb-2">03. MOTION COMPOSITIONS</span>
+                    <h3 class="font-display text-xl font-bold text-white mb-6">Motion Graphics Design</h3>
+                    
+                    <ul class="space-y-4 text-sm text-slate-400 mb-10">
+                        <li class="flex items-start gap-2.5">
+                            <span class="material-symbols-outlined text-cyan-400 text-base mt-0.5">check_circle</span>
+                            <span>Procedural graphics & vector animation systems</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="material-symbols-outlined text-cyan-400 text-base mt-0.5">check_circle</span>
+                            <span>Futuristic UI animations & vector kinetic assets</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="material-symbols-outlined text-cyan-400 text-base mt-0.5">check_circle</span>
+                            <span>Lottie animations for interactive mobile & web assets</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="mt-auto px-6 py-2.5 border border-slate-700 text-white rounded-lg text-xs font-semibold tracking-wide hover:bg-cyan-400 hover:text-slate-950 hover:border-cyan-400 transition-colors">GET DETAILS</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 px-6 lg:px-12 bg-slate-950/40 relative">
+            <div class="absolute bottom-0 left-10 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+            
+            <div class="max-w-container-max mx-auto">
+                <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+                    
+                    <!-- Left Column (Contact details) -->
+                    <div class="lg:col-span-5 flex flex-col items-start">
+                        <span class="font-mono text-xs font-bold text-primary tracking-widest uppercase mb-3">GET IN TOUCH</span>
+                        <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white mb-6">Start a Project</h2>
+                        <p class="font-sans text-sm sm:text-base text-slate-400 leading-relaxed mb-10">
+                            Have an exciting web application model, cinematic editing proposal, or procedural motion graphic plan in mind? Drop me a message and let's craft a premium experience together.
+                        </p>
+
+                        <!-- Contact Channels -->
+                        <div class="space-y-6 w-full">
+                            <!-- Email -->
+                            <a href="mailto:eng.sulub@gmail.com" class="flex items-center gap-4 p-4 rounded-xl border border-slate-800/80 bg-slate-900/20 hover:border-primary/50 transition-colors group">
+                                <span class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-lg">mail</span>
+                                </span>
+                                <div>
+                                    <h4 class="font-display text-xs text-slate-500 font-bold tracking-wider">EMAIL</h4>
+                                    <p class="font-mono text-xs text-white">eng.sulub@gmail.com</p>
+                                </div>
+                            </a>
+
+                            <!-- WhatsApp -->
+                            <a href="https://wa.me/252634456789" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 rounded-xl border border-slate-800/80 bg-slate-900/20 hover:border-green-500/50 transition-colors group">
+                                <span class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center text-green-500 group-hover:bg-green-500 group-hover:text-slate-950 transition-colors">
+                                    <span class="material-symbols-outlined text-lg">chat</span>
+                                </span>
+                                <div>
+                                    <h4 class="font-display text-xs text-slate-500 font-bold tracking-wider">WHATSAPP</h4>
+                                    <p class="font-mono text-xs text-white">+252 (61) 4121143</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Social Handles Grid -->
+                        <div class="mt-12 w-full pt-8 border-t border-slate-800/60">
+                            <h4 class="font-mono text-xs text-slate-500 font-bold tracking-wider mb-4">SOCIAL NETWORKS</h4>
+                            <div class="flex gap-4">
+                                <a href="#" class="w-10 h-10 rounded-full border border-slate-800 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary hover:scale-105 transition-all" aria-label="LinkedIn">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full border border-slate-800 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary hover:scale-105 transition-all" aria-label="GitHub">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full border border-slate-800 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary hover:scale-105 transition-all" aria-label="Instagram">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column (Contact form panel) -->
+                    <div class="lg:col-span-7">
+                        <div class="glass-panel p-8 rounded-2xl border border-slate-800 relative">
+                            <form id="contact-form" class="space-y-6">
+                                <!-- Grid Inputs -->
+                                <div class="grid sm:grid-cols-2 gap-6">
+                                    <!-- Name Input -->
+                                    <div class="relative z-0 w-full mb-2 group">
+                                        <input type="text" name="name" id="form-name" class="block py-3 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-slate-700 appearance-none focus:outline-none focus:ring-0 focus:border-primary peer transition-colors duration-300" placeholder=" " required />
+                                        <label for="form-name" class="peer-focus:font-medium absolute text-xs sm:text-sm text-slate-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Your Name</label>
+                                    </div>
+                                    
+                                    <!-- Email Input -->
+                                    <div class="relative z-0 w-full mb-2 group">
+                                        <input type="email" name="email" id="form-email" class="block py-3 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-slate-700 appearance-none focus:outline-none focus:ring-0 focus:border-primary peer transition-colors duration-300" placeholder=" " required />
+                                        <label for="form-email" class="peer-focus:font-medium absolute text-xs sm:text-sm text-slate-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email Address</label>
+                                    </div>
+                                </div>
+
+                                <!-- Subject Input -->
+                                <div class="relative z-0 w-full mb-2 group">
+                                    <input type="text" name="subject" id="form-subject" class="block py-3 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-slate-700 appearance-none focus:outline-none focus:ring-0 focus:border-primary peer transition-colors duration-300" placeholder=" " required />
+                                    <label for="form-subject" class="peer-focus:font-medium absolute text-xs sm:text-sm text-slate-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Project Subject</label>
+                                </div>
+
+                                <!-- Message Input -->
+                                <div class="relative z-0 w-full mb-2 group">
+                                    <textarea name="message" id="form-message" rows="4" class="block py-3 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-slate-700 appearance-none focus:outline-none focus:ring-0 focus:border-primary peer transition-colors duration-300 resize-none" placeholder=" " required></textarea>
+                                    <label for="form-message" class="peer-focus:font-medium absolute text-xs sm:text-sm text-slate-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Describe Your Plan</label>
+                                </div>
+
+                                <!-- Form status alerts -->
+                                <div id="form-status" class="hidden text-xs font-semibold px-4 py-2.5 rounded-lg border"></div>
+
+                                <!-- Submit Button -->
+                                <button type="submit" class="w-full bg-gradient-to-r from-primary to-accent text-white py-4 px-6 rounded-xl font-bold font-display shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 group">
+                                    <span>Send Plan Proposal</span>
+                                    <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">send</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-900 w-full py-12 relative z-10">
+        <div class="flex flex-col md:flex-row justify-between items-center px-6 lg:px-12 max-w-container-max mx-auto gap-8">
+            <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                <a href="#" class="font-display text-lg font-bold text-white mb-2 tracking-wide">
+                    ENG <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">SULUB</span>
+                </a>
+                <p class="font-sans text-xs text-slate-500 max-w-xs">
+                    Engineered for Excellence. Sculpting digital paradigms with robust logic and cinematically synchronized graphics.
+                </p>
+            </div>
+            
+            <div class="flex flex-col items-center md:items-end gap-4">
+                <!-- Navigation shortcuts -->
+                <div class="flex flex-wrap justify-center gap-6 text-xs font-semibold text-slate-400">
+                    <a href="#home" class="hover:text-primary transition-colors">Home</a>
+                    <a href="#about" class="hover:text-primary transition-colors">About</a>
+                    <a href="#projects" class="hover:text-primary transition-colors">Projects</a>
+                    <a href="#services" class="hover:text-primary transition-colors">Services</a>
+                    <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
+                </div>
+                <!-- Copyright -->
+                <div class="font-mono text-[10px] text-slate-600">
+                    © 2026 ENG SULUB. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Custom Mouse Pointer glow tracking
+        const pointerGlow = document.getElementById('pointer-glow');
+        
+        document.addEventListener('mousemove', (e) => {
+            // translate3d uses GPU rendering, keeping it extremely smooth
+            pointerGlow.style.transform = `translate3d(${e.clientX - 250}px, ${e.clientY - 250}px, 0)`;
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function toggleMobileMenu() {
+            const isOpened = !mobileMenu.classList.contains('translate-x-full');
+            if (isOpened) {
+                mobileMenu.classList.add('translate-x-full');
+                mobileMenuBtn.innerHTML = '<span class="material-symbols-outlined text-3xl">menu</span>';
+            } else {
+                mobileMenu.classList.remove('translate-x-full');
+                mobileMenuBtn.innerHTML = '<span class="material-symbols-outlined text-3xl">close</span>';
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', toggleMobileMenu);
+        });
+
+        // Dynamic Projects Grid Filter
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active tab visuals
+                filterButtons.forEach(b => {
+                    b.classList.remove('bg-primary/10', 'text-primary', 'border-primary/20');
+                    b.classList.add('text-slate-400', 'border-transparent');
+                });
+                btn.classList.add('bg-primary/10', 'text-primary', 'border-primary/20');
+                btn.classList.remove('text-slate-400', 'border-transparent');
+
+                const filterVal = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    const cardCat = card.getAttribute('data-category');
+                    
+                    if (filterVal === 'all' || cardCat === filterVal) {
+                        // Fade in matching elements
+                        card.classList.remove('hidden');
+                        setTimeout(() => {
+                            card.classList.remove('opacity-0', 'scale-95');
+                            card.classList.add('opacity-100', 'scale-100');
+                        }, 50);
+                    } else {
+                        // Fade out non-matching elements
+                        card.classList.remove('opacity-100', 'scale-100');
+                        card.classList.add('opacity-0', 'scale-95');
+                        setTimeout(() => {
+                            if (card.classList.contains('opacity-0')) {
+                                card.classList.add('hidden');
+                            }
+                        }, 400); // match transition duration
+                    }
+                });
+            });
+        });
+
+        // Contact Form Submission (Simulated)
+        const contactForm = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form inputs
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnContent = submitBtn.innerHTML;
+
+            // Change button state to loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <span class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                <span>Proposing Plan...</span>
+            `;
+
+            // Clear status
+            formStatus.className = 'hidden';
+
+            // Simulate server network delay
+            setTimeout(() => {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnContent;
+
+                // Display success status alert
+                formStatus.className = 'text-xs font-semibold px-4 py-2.5 rounded-lg border bg-green-500/10 border-green-500/30 text-green-400 block';
+                formStatus.innerText = 'Thank you! Your project plan was successfully simulated and sent.';
+
+                // Reset inputs
+                contactForm.reset();
+
+                // Fade out success status alert after 5 seconds
+                setTimeout(() => {
+                    formStatus.className = 'hidden';
+                }, 5000);
+
+            }, 1800);
+        });
+
+        // Sticky Navbar scroll adjustments
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg', 'bg-[#0F172A]/95', 'h-16');
+                header.querySelector('nav').classList.remove('h-20');
+                header.querySelector('nav').classList.add('h-16');
+            } else {
+                header.classList.remove('shadow-lg', 'bg-[#0F172A]/95', 'h-16');
+                header.querySelector('nav').classList.remove('h-16');
+                header.querySelector('nav').classList.add('h-20');
+            }
+        });
+
+        // Typing Animation Effect
+        const words = ["Building Web Apps", "Editing Cinematic Videos", "Creating Motion Graphics"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typedTextSpan = document.getElementById("typed-text");
+        const typingDelay = 100;
+        const erasingDelay = 50;
+        const newWordDelay = 2000;
+
+        function type() {
+            if (!typedTextSpan) return;
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                typedTextSpan.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedTextSpan.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = typingDelay;
+
+            if (isDeleting) {
+                typeSpeed = erasingDelay;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                typeSpeed = newWordDelay;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            if (words.length) setTimeout(type, 500);
+        });
+    </script>
+</body>
+</html>
