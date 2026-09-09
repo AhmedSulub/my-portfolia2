@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark Mode Colors */
+    --color-background: 225 86% 2%;
+    --color-surface: 225 76% 10%;
+    --color-surface-elevated: 225 67% 7%;
+    --color-surface-border: 0 0% 100% / 0.06;
+    --color-primary: 0 0% 100%;
+    --color-secondary: 220 13% 59%;
+    --color-accent: 217 93% 60%;
+    --color-accent-hover: 217 100% 43%;
+    --color-accent-muted: 217 93% 60% / 0.12;
+    --color-accent-light: 217 93% 60% / 0.25;
+  }
+
+  .light {
+    /* Light Mode Colors */
+    --color-background: 0 0% 100%;
+    --color-surface: 210 40% 96%;
+    --color-surface-elevated: 210 40% 98%;
+    --color-surface-border: 220 13% 91%;
+    --color-primary: 220 13% 9%;
+    --color-secondary: 220 13% 40%;
+    --color-accent: 217 93% 60%;
+    --color-accent-hover: 217 100% 43%;
+    --color-accent-muted: 217 93% 60% / 0.12;
+    --color-accent-light: 217 93% 60% / 0.25;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-secondary overflow-x-hidden font-sans antialiased transition-colors duration-300;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  ::selection {
+    @apply bg-accent/25 text-primary;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-surface/50;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-surface rounded-full transition-colors;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-surface-elevated;
+  }
+}
+
+@layer components {
+  /* Navbar Styles */
+  .glass-nav {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: hsl(var(--color-background) / 0.6);
+    border: 1px solid hsl(var(--color-surface-border));
+  }
+
+  .glass-nav-active {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: hsl(var(--color-background) / 0.8);
+    border: 1px solid hsl(var(--color-surface-border));
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.2);
+  }
+
+  /* Card Styles */
+  .card-surface {
+    @apply bg-surface border border-surface-border rounded-2xl shadow-card transition-all duration-300;
+  }
+
+  .card-surface:hover {
+    @apply shadow-card-hover border-white/10 dark:border-white/10;
+  }
+
+  /* Button Styles - Primary */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-medium text-sm rounded-lg
+           transition-all duration-300 relative overflow-hidden;
+    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-primary:active {
+    @apply scale-[0.98];
+  }
+
+  .btn-primary::before {
+    @apply absolute inset-0 bg-white opacity-0 transition-opacity duration-300;
+    content: '';
+  }
+
+  .btn-primary:hover::before {
+    @apply opacity-[0.1];
+  }
+
+  /* Button Styles - Secondary */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-medium text-sm rounded-lg
+           border border-white/10 transition-all duration-300 relative overflow-hidden;
+    color: hsl(var(--color-primary));
+    background: transparent;
+  }
+
+  .btn-secondary:hover {
+    @apply border-accent/50 bg-accent-light;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+  }
+
+  .btn-secondary:active {
+    @apply scale-[0.98];
+  }
+
+  /* Button Styles - Tertiary */
+  .btn-tertiary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-medium text-sm rounded-lg
+           transition-all duration-300 relative overflow-hidden;
+    color: hsl(var(--color-primary));
+    background: hsl(var(--color-surface));
+  }
+
+  .btn-tertiary:hover {
+    @apply bg-surface-elevated;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-tertiary:active {
+    @apply scale-[0.98];
+  }
+
+  /* Section Styles */
+  .section-padding {
+    @apply py-section-mobile md:py-section;
+  }
+
+  .container-content {
+    @apply max-w-content mx-auto px-6 md:px-8 lg:px-12;
+  }
+
+  .section-label {
+    @apply text-accent text-xs font-semibold tracking-[0.15em] uppercase mb-4 block;
+  }
+
+  .section-title {
+    @apply font-display font-bold text-primary text-3xl md:text-4xl lg:text-[2.75rem] leading-tight tracking-[-0.02em];
+  }
+
+  /* Form Styles */
+  .form-input {
+    @apply w-full bg-transparent border border-surface-border rounded-lg px-4 py-3 text-primary text-sm placeholder:text-secondary/50 
+           focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all duration-200;
+  }
+
+  .form-input:hover {
+    @apply border-accent/30;
+  }
+
+  .form-label {
+    @apply block text-sm text-secondary mb-2;
+  }
+
+  /* Gradient Text */
+  .text-gradient {
+    @apply bg-gradient-to-r from-accent via-blue-400 to-accent bg-clip-text text-transparent;
+  }
+
+  /* Animated Gradient Ring */
+  .animated-ring {
+    @apply relative;
+    animation: spin-slow 8s linear infinite;
+  }
+
+  /* Typewriter Effect */
+  .typewriter {
+    overflow: hidden;
+    border-right: 3px solid hsl(var(--color-accent));
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+    animation: typewriter 3.5s steps(40, end), blink-caret 0.75s step-start infinite;
+  }
+
+  .typewriter.done {
+    border-right: none;
+    animation: none;
+  }
+
+  /* Smooth Transitions */
+  .smooth-transition {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  /* Text Blur Effect on Scroll */
+  .blur-fade {
+    @apply backdrop-blur-sm transition-all duration-500;
+  }
+}
