@@ -31,6 +31,7 @@ function openInChrome() {
 }
 
 export default defineConfig({
+  // base: '/my-portfolia2/',
   plugins: [react(), openInChrome()],
   server: {
     open: false,
@@ -40,4 +41,5 @@ export default defineConfig({
     open: false,
     port: 4173,
   },
+ 
 })
